@@ -11,3 +11,4 @@ ___
 * Developed queries using the Hibernate Query Language (HQL)
 * Created Spring MVC controllers to process web requests
 * Developed web view components using Spring MVC custom tags
+* Add AOP Logging system to project
