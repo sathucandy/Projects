@@ -12,3 +12,9 @@ ___
 * Created Spring MVC controllers to process web requests
 * Developed web view components using Spring MVC custom tags
 * Add AOP Logging system to project
+___
+### **2. Employee Managment and Item Catalog System (Java, Swing, SQL)**
+* Developed a complete Swing and SQL project with CRUD operations
+* Implemented Search for product by keyword/name
+* Fetching the tables added in list by hitting the database
+* Categorised login for Administrator and Employee.
