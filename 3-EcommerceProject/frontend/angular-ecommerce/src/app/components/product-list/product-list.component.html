@@ -1,49 +1,18 @@
-<!-- <div class="main-content">
+<div class="main-content">
   <div class="section-content section-content-p30">
     <div class="container-fluid">
       <div class="row">
-         loop over collection of products 
         <div *ngFor="let tempProduct of products" class="col-md-3">
           <div class="product-box">
-            <img src="{{tempProduct.imageUrl}}" class="img-responsive" alt="">
-            <h1>{{tempProduct.name}}</h1>
+            <img
+              src="{{ tempProduct.imageUrl }}"
+              class="img-responsive"
+              alt=""
+            />
+            <h1>{{ tempProduct.name }}</h1>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> -->
-
-<!-- <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Units in stock</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img src="assets/images/products/placeholder.png" /></td>
-      <td>JavaScript - The Fun Parts</td>
-      <td>19.99</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <td><img src="assets/images/products/placeholder.png" /></td>
-      <td>Learn Spring</td>
-      <td>29.99</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <td><img src="assets/images/products/placeholder.png" /></td>
-      <td>Learn Kubernetes</td>
-      <td>3.99</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
--->
-<p *ngFor="let tempProduct of products">
-  {{ tempProduct.name }}: {{ tempProduct.unitPrice | currency: "USD" }}
-</p>
+</div>
