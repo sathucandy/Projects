@@ -19,7 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, ProductListComponent],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [RouterModule.forRoot(routes), BrowserModule, HttpClientModule],
   providers: [ProductService],
   bootstrap: [AppComponent]
 })
