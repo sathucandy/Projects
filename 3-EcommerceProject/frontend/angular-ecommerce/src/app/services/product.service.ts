@@ -17,7 +17,6 @@ export class ProductService {
   getProductList(theCategoryId: number): Observable<Product[]> {
     // need to build url based on given category id
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
-
     return this.getProducts(searchUrl);
   }
 
@@ -30,7 +29,6 @@ export class ProductService {
   searchProduct(theKeyWord: string): Observable<Product[]> {
     // need to build url based by keyword
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyWord}`;
-
     return this.getProducts(searchUrl);
   }
 
