@@ -9,23 +9,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sarthak.cruddemo.dao.EmployeeDAO;
 import com.sarthak.cruddemo.entity.Employee;
+import com.sarthak.cruddemo.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api")
 public class EmployeeRestController {
 
-	private EmployeeDAO employeeDAO;
+//	Making use of employee service
+	private EmployeeService employeeService;
 
 	// quick and dirty: inject employee dao using constructor injection
 	@Autowired
-	public EmployeeRestController(EmployeeDAO theEmployeeDAO) {
-		employeeDAO = theEmployeeDAO;
+	public EmployeeRestController(EmployeeService theEmployeeService) {
+		employeeService = theEmployeeService;
 	}
 
 	// expose "/employee" and return list of employees
 	@GetMapping("/employees")
 	public List<Employee> findAll() {
-		return employeeDAO.findAll();
+		return employeeService.findAll();
 	}
 
 }
