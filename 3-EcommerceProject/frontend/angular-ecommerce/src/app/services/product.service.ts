@@ -6,7 +6,7 @@ import { map } from "rxjs/operators";
 import { ProductCategory } from "../common/product-category";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ProductService {
   private baseUrl = "http://localhost:8080/api/products";
@@ -35,7 +35,7 @@ export class ProductService {
   getProductCategories(): Observable<ProductCategory[]> {
     return this.httpClient
       .get<GetResponseProductCategory>(this.categoryUrl)
-      .pipe(map(response => response._embedded.productCategory));
+      .pipe(map((response) => response._embedded.productCategory));
   }
 
   searchProduct(theKeyWord: string): Observable<Product[]> {
@@ -44,10 +44,22 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
+  searchProductsPaginate(
+    thePage: number,
+    thePageSize: number,
+    theKeyWord: string
+  ): Observable<GetResponseProducts> {
+    // need to build url based on given keyword, page and size
+    const searchUrl =
+      `${this.baseUrl}/search/findByNameContaining?name=${theKeyWord}` +
+      `&page=${thePage}&size=${thePageSize}`;
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
+  }
+
   private getProducts(searchUrl: string): Observable<Product[]> {
     return this.httpClient
       .get<GetResponseProducts>(searchUrl)
-      .pipe(map(response => response._embedded.products));
+      .pipe(map((response) => response._embedded.products));
   }
 
   getProduct(theProductId: number): Observable<Product> {

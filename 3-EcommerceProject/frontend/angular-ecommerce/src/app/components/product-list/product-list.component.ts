@@ -18,8 +18,10 @@ export class ProductListComponent implements OnInit {
 
   // new properties for pagination;
   thePageNumber: number = 1;
-  thePageSize = 10;
+  thePageSize = 5;
   theTotalElements: number = 0;
+
+  previousKeyword: string = null;
 
   constructor(
     private productService: ProductService,
@@ -42,6 +44,23 @@ export class ProductListComponent implements OnInit {
   }
   handleSearchProducts() {
     const theKeyWord: string = this.route.snapshot.paramMap.get("keyword");
+
+    // if we have a different keyword than previous
+    // then set the pagenumber to 1
+    if (this.previousKeyword != theKeyWord) {
+      this.thePageNumber = 1;
+    }
+
+    this.previousKeyword = theKeyWord;
+    console.log(`keyword=${theKeyWord}, thePageNumber=${this.thePageNumber}`);
+
+    this.productService
+      .searchProductsPaginate(
+        this.thePageNumber - 1,
+        this.thePageSize,
+        theKeyWord
+      )
+      .subscribe(this.processResult());
 
     // now search for product using those keywords
     this.productService.searchProduct(theKeyWord).subscribe((data) => {
@@ -94,5 +113,11 @@ export class ProductListComponent implements OnInit {
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
     };
+  }
+
+  updatePageSize(pageSize: number) {
+    this.thePageSize = pageSize;
+    this.thePageNumber = 1;
+    this.listProducts();
   }
 }
